@@ -4,7 +4,7 @@ let temperature = 2;
 let hitCount = 0;
 let lastHitCount = 0;
 
-export default function (p) {
+function brownianSketch(p) {
   let slider;
   let boxSize = 400;
   let boxMargin = 50;
@@ -78,3 +78,5 @@ export default function (p) {
     if (hitCount > 0 && p.frameCount % 30 === 0) hitCount -= 1;
   };
 }
+
+export default brownianSketch;
