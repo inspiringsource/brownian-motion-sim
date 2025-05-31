@@ -9,7 +9,9 @@ function brownianSketch(p) {
 
   p.setup = () => {
     p.createCanvas(boxSize + boxMargin * 2, boxSize + boxMargin * 2);
-    // Initialize particles
+
+    // Reset particles array (important to avoid stacking when re-instantiated)
+    particles = [];
     for (let i = 0; i < numParticles; i++) {
       particles.push({
         x: p.random(boxMargin, boxMargin + boxSize),
@@ -18,8 +20,8 @@ function brownianSketch(p) {
         vy: 0,
       });
     }
+
     slider = p.createSlider(0.1, 5, 2, 0.1);
-    // Instead of positioning absolutely, attach to p5's parent container:
     slider.parent(p.canvas.parentElement); // Attach slider under canvas
     slider.position(20, boxSize + boxMargin * 2 + 10);
     slider.style('width', '200px');
@@ -28,27 +30,19 @@ function brownianSketch(p) {
   p.draw = () => {
     p.background(255);
     temperature = slider.value();
-    // ... (rest stays same)
-    // Box color based on hit count
     let t = p.constrain(hitCount / 100, 0, 1);
     let frameColor = p.lerpColor(p.color(0, 120, 255), p.color(255, 30, 30), t);
-
-    // Draw the box frame
     p.strokeWeight(8);
     p.stroke(frameColor);
     p.noFill();
     p.rect(boxMargin, boxMargin, boxSize, boxSize);
 
-    // Move and draw particles
     for (let pt of particles) {
-      // ... same logic ...
       pt.vx += p.random(-temperature, temperature);
       pt.vy += p.random(-temperature, temperature);
-
       const maxSpeed = Math.max(temperature * 2, 1.5);
       pt.vx = p.constrain(pt.vx, -maxSpeed, maxSpeed);
       pt.vy = p.constrain(pt.vy, -maxSpeed, maxSpeed);
-
       pt.x += pt.vx;
       pt.y += pt.vy;
 
@@ -68,13 +62,17 @@ function brownianSketch(p) {
     p.fill(0);
     p.textSize(16);
     p.text(`Temperature: ${temperature}`, 230, boxSize + boxMargin * 2 + 25);
-
-    if (hitCount > 0 && p.frameCount % 30 === 0) hitCount -= 1;
+    if (hitCount > 0 && p.frameCount % 30 === 0) {
+  hitCount = Math.floor(hitCount * 0.8); // Decay 20% per second at 30 fps
+}
   };
 
-  // Add a cleanup function:
+  // Custom cleanup to remove slider
   p.remove = () => {
-    if (slider) slider.remove();
+    if (slider) {
+      slider.remove();
+      slider = null;
+    }
   };
 }
 
