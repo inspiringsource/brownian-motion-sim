@@ -1,13 +1,11 @@
-let particles = [];
-let numParticles = 50;
-let temperature = 2;
-let hitCount = 0;
-let lastHitCount = 0;
-
 function brownianSketch(p) {
-  let slider;
+  let particles = [];
+  let numParticles = 50;
+  let temperature = 2;
+  let hitCount = 0;
   let boxSize = 400;
   let boxMargin = 50;
+  let slider;
 
   p.setup = () => {
     p.createCanvas(boxSize + boxMargin * 2, boxSize + boxMargin * 2);
@@ -20,7 +18,7 @@ function brownianSketch(p) {
         vy: 0,
       });
     }
-    slider = p.createSlider(0.5, 5, 2, 0.1);
+    slider = p.createSlider(0.1, 5, 2, 0.1);
     slider.position(20, boxSize + boxMargin * 2 + 10);
     slider.style('width', '200px');
   };
@@ -30,10 +28,8 @@ function brownianSketch(p) {
     temperature = slider.value();
 
     // Box color based on hit count
-    let frameColor;
     let t = p.constrain(hitCount / 100, 0, 1);
-    // Blue (cold, few hits) to Red (hot, many hits)
-    frameColor = p.lerpColor(p.color(0, 120, 255), p.color(255, 30, 30), t);
+    let frameColor = p.lerpColor(p.color(0, 120, 255), p.color(255, 30, 30), t);
 
     // Draw the box frame
     p.strokeWeight(8);
@@ -47,9 +43,10 @@ function brownianSketch(p) {
       pt.vx += p.random(-temperature, temperature);
       pt.vy += p.random(-temperature, temperature);
 
-      // Limit speed
-      pt.vx = p.constrain(pt.vx, -5, 5);
-      pt.vy = p.constrain(pt.vy, -5, 5);
+      // Limit speed (make max speed proportional to temperature for more visible effect)
+      const maxSpeed = Math.max(temperature * 2, 1.5);
+      pt.vx = p.constrain(pt.vx, -maxSpeed, maxSpeed);
+      pt.vy = p.constrain(pt.vy, -maxSpeed, maxSpeed);
 
       pt.x += pt.vx;
       pt.y += pt.vy;
