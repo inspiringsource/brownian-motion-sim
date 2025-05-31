@@ -19,6 +19,8 @@ function brownianSketch(p) {
       });
     }
     slider = p.createSlider(0.1, 5, 2, 0.1);
+    // Instead of positioning absolutely, attach to p5's parent container:
+    slider.parent(p.canvas.parentElement); // Attach slider under canvas
     slider.position(20, boxSize + boxMargin * 2 + 10);
     slider.style('width', '200px');
   };
@@ -26,7 +28,7 @@ function brownianSketch(p) {
   p.draw = () => {
     p.background(255);
     temperature = slider.value();
-
+    // ... (rest stays same)
     // Box color based on hit count
     let t = p.constrain(hitCount / 100, 0, 1);
     let frameColor = p.lerpColor(p.color(0, 120, 255), p.color(255, 30, 30), t);
@@ -39,11 +41,10 @@ function brownianSketch(p) {
 
     // Move and draw particles
     for (let pt of particles) {
-      // Random movement, scale with temperature
+      // ... same logic ...
       pt.vx += p.random(-temperature, temperature);
       pt.vy += p.random(-temperature, temperature);
 
-      // Limit speed (make max speed proportional to temperature for more visible effect)
       const maxSpeed = Math.max(temperature * 2, 1.5);
       pt.vx = p.constrain(pt.vx, -maxSpeed, maxSpeed);
       pt.vy = p.constrain(pt.vy, -maxSpeed, maxSpeed);
@@ -51,7 +52,6 @@ function brownianSketch(p) {
       pt.x += pt.vx;
       pt.y += pt.vy;
 
-      // Bounce off the walls (with hit counting)
       let hit = false;
       if (pt.x <= boxMargin) { pt.x = boxMargin; pt.vx *= -1; hit = true; }
       if (pt.x >= boxMargin + boxSize) { pt.x = boxMargin + boxSize; pt.vx *= -1; hit = true; }
@@ -59,20 +59,22 @@ function brownianSketch(p) {
       if (pt.y >= boxMargin + boxSize) { pt.y = boxMargin + boxSize; pt.vy *= -1; hit = true; }
       if (hit) hitCount++;
 
-      // Draw particle
       p.noStroke();
       p.fill(50, 50, 120, 200);
       p.ellipse(pt.x, pt.y, 10, 10);
     }
 
-    // Draw temperature label
     p.noStroke();
     p.fill(0);
     p.textSize(16);
     p.text(`Temperature: ${temperature}`, 230, boxSize + boxMargin * 2 + 25);
 
-    // Slowly reduce hitCount over time (frame cools off)
     if (hitCount > 0 && p.frameCount % 30 === 0) hitCount -= 1;
+  };
+
+  // Add a cleanup function:
+  p.remove = () => {
+    if (slider) slider.remove();
   };
 }
 
