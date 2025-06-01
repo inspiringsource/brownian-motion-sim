@@ -8,12 +8,12 @@ const P5Wrapper = dynamic(() => import("./components/P5Wrapper"), { ssr: false }
 
 export default function Home() {
   return (
-    <div style={{ textAlign: "center", padding: "2em" }}>
-      <h1>Brownian Motion Simulator</h1>
+    <div className="flex flex-col items-center px-8 py-12 text-center">
+      <h1 className="text-4xl font-bold mb-4">Avi&apos;s Brownian Motion Simulator</h1>
       <P5Wrapper sketch={brownian} />
       <p>
-        Move the <b>temperature</b> slider below the box!<br />
-        The box border color shifts from blue (cold, few hits) to red (hot, many hits).
+        Bewege den <b>Temperatur</b> Regler unterhalb der Box!<br />
+        Die Rahmenfarbe der Box wechselt von Blau (kalt, wenige Kollisionen) zu Rot (heiß, viele Kollisionen).
       </p>
     </div>
   );
