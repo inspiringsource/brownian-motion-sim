@@ -22,9 +22,14 @@ function brownianSketch(p) {
     }
 
     slider = p.createSlider(0.1, 5, 2, 0.1);
-    slider.parent(p.canvas.parentElement); // Attach slider under canvas
-    slider.position(20, boxSize + boxMargin * 2 + 10);
+    slider.parent(p.canvas.parentElement);
+    // Put slider below the canvas (no need for position left/right)
     slider.style('width', '200px');
+    slider.style('display', 'block');
+    slider.style('margin', '20px auto 0 auto'); // Center it horizontally
+    slider.style('position', 'relative');       // Make sure it's relative, not absolute
+    slider.style('left', '0');                  // Reset left property
+    slider.style('right', '0');                 // Reset right property
   };
 
   p.draw = () => {
