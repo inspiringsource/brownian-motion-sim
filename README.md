@@ -41,6 +41,4 @@ Obwohl ich normalerweise gerne mit **TypeScript** arbeite, habe ich mich hier be
   * Visualisierung der Teilchenkollisionen am Rand
   * Anschauliche Farbverläufe je nach “Temperatur” und Aktivität
 
----
 
-*Viel Spass beim Ausprobieren und Forschen!*
