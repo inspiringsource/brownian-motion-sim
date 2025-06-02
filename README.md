@@ -6,14 +6,23 @@ Dieses Projekt ist eine interaktive Simulation der Brownschen Bewegung (Brownian
 
 Ich habe dieses Projekt begonnen, um meine Kenntnisse in Physik durch das Programmieren zu vertiefen. Besonders inspiriert hat mich das Zitat des Stanford-Professors **Chris Piech**:
 
-> “When people learn to code they start doing better in other subjects.”
+> “When people learn to code they start doing better in other subjects.”  
 > [YouTube-Link](https://youtu.be/3mRvCF4qyTA?si=rrMr_ZYwngLw7rnu)
 
-Mit eigenen Visualisierungen werden komplexe physikalische Vorgänge verständlicher und machen sogar Spaß.
+Mit eigenen Visualisierungen werden komplexe physikalische Vorgänge verständlicher und machen sogar Spass!
 
 ## Was ist Brownsche Bewegung?
 
-Die Brownsche Bewegung beschreibt die zufällige Bewegung von Teilchen, z.B. Pollen auf Wasser, verursacht durch Zusammenstöße mit den Molekülen der Flüssigkeit. Dieses Verhalten kann man mit Computercode simulieren und beobachten.
+Die Brownsche Bewegung beschreibt die zufällige Bewegung von Teilchen, z.B. Pollen auf Wasser, verursacht durch Zusammenstösse mit den Molekülen der Flüssigkeit. Dieses Verhalten kann man mit Computercode simulieren und beobachten.
+
+## Warum diese Technologien?
+
+Für dieses Projekt habe ich **Next.js** und **p5.js** gewählt:
+
+- **Next.js** eignet sich hervorragend für moderne Webanwendungen, da es React-basiert ist und eine schnelle Entwicklung sowie einfache Bereitstellung ermöglicht.
+- **p5.js** ist eine kreative JavaScript-Bibliothek, die sich perfekt für visuelle und interaktive Simulationen eignet. Sie bietet viele Funktionen, um Animationen und Grafiken einfach zu erstellen – ideal für physikalische Experimente im Browser.
+
+Obwohl ich normalerweise gerne mit **TypeScript** arbeite, habe ich mich hier bewusst für **JavaScript** entschieden, weil die Typdefinitionen für p5.js teilweise unvollständig oder ungenau sind. Mit JavaScript ist die Integration unkomplizierter und der Fokus liegt auf dem kreativen Ausprobieren und Visualisieren.
 
 ## Ressourcen & Links
 
@@ -25,19 +34,13 @@ Die Brownsche Bewegung beschreibt die zufällige Bewegung von Teilchen, z.B. Pol
 ## Über das Projekt
 
 * **Technologien:**
-
   * Next.js (React-basiertes Webframework)
   * p5.js (Kreative JavaScript-Bibliothek für visuelle Simulationen)
 * **Features:**
-
   * Interaktive Temperaturregelung (Einfluss auf die Bewegung)
   * Visualisierung der Teilchenkollisionen am Rand
   * Anschauliche Farbverläufe je nach “Temperatur” und Aktivität
 
-## Zielgruppe
-
-Alle, die Physik, Programmieren oder Visualisierung lernen oder unterrichten wollen – oder einfach neugierig auf spannende Naturphänomene sind.
-
 ---
 
-*Viel Spaß beim Ausprobieren und Forschen!*
+*Viel Spass beim Ausprobieren und Forschen!*
