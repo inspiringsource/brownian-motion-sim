@@ -1,6 +1,6 @@
 # Brownian Motion Simulation mit Next.js und p5.js
 
-Dieses Projekt ist eine interaktive Simulation der Brownschen Bewegung (Brownian Motion), umgesetzt mit [Next.js](https://nextjs.org/) und [p5.js](https://p5js.org/). Ziel ist es, die Brownsche Bewegung – ein fundamentales Konzept der Physik – durch Programmierung zu verstehen, zu visualisieren und das Interesse an Physik und Naturwissenschaften zu fördern.
+Dieses Projekt ist eine interaktive Simulation der Brownschen Bewegung (Brownian Motion), umgesetzt mit [Next.js](https://nextjs.org/) und [p5.js](https://p5js.org/). Ziel ist es, die Brownsche Bewegung und ist ein fundamentales Konzept der Physik durch Programmierung zu verstehen, zu visualisieren und mein Interesse an Physik zu fördern.
 
 ## Motivation
 
