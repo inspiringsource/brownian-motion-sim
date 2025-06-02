@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Brownian Motion Simulation mit Next.js und p5.js
 
-## Getting Started
+Dieses Projekt ist eine interaktive Simulation der Brownschen Bewegung (Brownian Motion), umgesetzt mit [Next.js](https://nextjs.org/) und [p5.js](https://p5js.org/). Ziel ist es, die Brownsche Bewegung – ein fundamentales Konzept der Physik – durch Programmierung zu verstehen, zu visualisieren und das Interesse an Physik und Naturwissenschaften zu fördern.
 
-First, run the development server:
+## Motivation
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Ich habe dieses Projekt begonnen, um meine Kenntnisse in Physik durch das Programmieren zu vertiefen. Besonders inspiriert hat mich das Zitat des Stanford-Professors **Chris Piech**:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> “When people learn to code they start doing better in other subjects.”
+> [YouTube-Link](https://youtu.be/3mRvCF4qyTA?si=rrMr_ZYwngLw7rnu)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Mit eigenen Visualisierungen werden komplexe physikalische Vorgänge verständlicher und machen sogar Spaß.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Was ist Brownsche Bewegung?
 
-## Learn More
+Die Brownsche Bewegung beschreibt die zufällige Bewegung von Teilchen, z.B. Pollen auf Wasser, verursacht durch Zusammenstöße mit den Molekülen der Flüssigkeit. Dieses Verhalten kann man mit Computercode simulieren und beobachten.
 
-To learn more about Next.js, take a look at the following resources:
+## Ressourcen & Links
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* [Nature of Code – Kapitel: Brownian Motion](https://natureofcode.com/vectors/#chapter01_section4)
+  (Eine exzellente Einführung mit Beispielen und Erklärungen)
+* [p5.js – Simulate Brownian Motion (Beispiel)](https://archive.p5js.org/examples/simulate-brownian-motion.html)
+* [Wikipedia: Brownsche Bewegung](https://de.wikipedia.org/wiki/Brownsche_Bewegung)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Über das Projekt
 
-## Deploy on Vercel
+* **Technologien:**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+  * Next.js (React-basiertes Webframework)
+  * p5.js (Kreative JavaScript-Bibliothek für visuelle Simulationen)
+* **Features:**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+  * Interaktive Temperaturregelung (Einfluss auf die Bewegung)
+  * Visualisierung der Teilchenkollisionen am Rand
+  * Anschauliche Farbverläufe je nach “Temperatur” und Aktivität
+
+## Zielgruppe
+
+Alle, die Physik, Programmieren oder Visualisierung lernen oder unterrichten wollen – oder einfach neugierig auf spannende Naturphänomene sind.
+
+---
+
+*Viel Spaß beim Ausprobieren und Forschen!*
