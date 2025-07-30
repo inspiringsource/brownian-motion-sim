@@ -1,5 +1,7 @@
 # Brownian Motion Simulation with Next.js and p5.js
 
+> *The code was optimized with AI tools!*
+
 This project is an interactive simulation of Brownian Motion, implemented with [Next.js](https://nextjs.org/) and [p5.js](https://p5js.org/). The goal is to understand and visualize Brownian Motion, a fundamental concept in physics, through programming and to foster my interest in physics.
 
 ## Motivation

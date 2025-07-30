@@ -25,5 +25,101 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Prevent layout shifts with p5.js canvas */
+.parent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 500px; /* Reduced since slider is now separate */
+  margin-bottom: 20px;
+}
+
+/* Ensure p5.js canvas doesn't create extra spacing */
+.p5Canvas {
+  display: block !important;
+}
+
+/* Temperature slider container */
+.temperature-slider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 0;
+  gap: 15px;
+}
+
+/* Temperature slider styling */
+.temperature-slider {
+  width: 300px;
+  height: 8px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #ddd;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.temperature-slider:hover {
+  background: #bbb;
+}
+
+.temperature-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+
+.temperature-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+
+.temperature-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+
+.temperature-slider::-moz-range-thumb:hover {
+  transform: scale(1.1);
+}
+
+/* Temperature label styling */
+.temperature-label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .temperature-label {
+    color: #ededed;
+  }
+  
+  .temperature-slider {
+    background: #444;
+  }
+  
+  .temperature-slider:hover {
+    background: #555;
+  }
+}
+
 
 

@@ -1,6 +1,6 @@
 import { getTranslation } from "../lib/translations";
 
-function brownianSketch(p, language = "de") {
+function brownianSketch(p, initialLanguage = "de") {
   let particles = [];
   let numParticles = 50;
   let temperature = 2;
@@ -8,7 +8,17 @@ function brownianSketch(p, language = "de") {
   let boxSize = 400;
   let boxMargin = 50;
   let particleRadius = 5; // Half of the diameter (10)
-  let slider;
+  let currentLanguage = initialLanguage;
+
+  // Method to update language
+  p.updateLanguage = (newLanguage) => {
+    currentLanguage = newLanguage;
+  };
+
+  // Method to update temperature from external slider
+  p.updateTemperature = (newTemperature) => {
+    temperature = newTemperature;
+  };
 
   p.setup = () => {
     p.createCanvas(boxSize + boxMargin * 2, boxSize + boxMargin * 2);
@@ -29,21 +39,11 @@ function brownianSketch(p, language = "de") {
         vy: 0,
       });
     }
-
-    slider = p.createSlider(0.1, 5, 2, 0.1);
-    slider.parent(p.canvas.parentElement);
-    // Put slider below the canvas (no need for position left/right)
-    slider.style("width", "200px");
-    slider.style("display", "block");
-    slider.style("margin", "20px auto 0 auto"); // Center it horizontally
-    slider.style("position", "relative"); // Make sure it's relative, not absolute
-    slider.style("left", "0"); // Reset left property
-    slider.style("right", "0"); // Reset right property
   };
 
   p.draw = () => {
     p.background(255);
-    temperature = slider.value();
+
     let t = p.constrain(hitCount / 100, 0, 1);
     let frameColor = p.lerpColor(p.color(0, 120, 255), p.color(255, 30, 30), t);
     p.strokeWeight(8);
@@ -88,25 +88,14 @@ function brownianSketch(p, language = "de") {
       p.ellipse(pt.x, pt.y, particleRadius * 2, particleRadius * 2);
     }
 
-    p.noStroke();
-    p.fill(0);
-    p.textSize(16);
-    p.text(
-      `${getTranslation(language, "temperature")}: ${temperature.toFixed(1)}`,
-      230,
-      boxSize + boxMargin * 2 + 25
-    );
     if (hitCount > 0 && p.frameCount % 30 === 0) {
       hitCount = Math.floor(hitCount * 0.8); // Decay 20% per second at 30 fps
     }
   };
 
-  // Custom cleanup to remove slider
+  // Custom cleanup - no longer needed since we removed the slider
   p.remove = () => {
-    if (slider) {
-      slider.remove();
-      slider = null;
-    }
+    // Cleanup code if needed in the future
   };
 }
 
