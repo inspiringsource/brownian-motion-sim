@@ -1,10 +1,13 @@
-function brownianSketch(p) {
+import { getTranslation } from "../lib/translations";
+
+function brownianSketch(p, language = "de") {
   let particles = [];
   let numParticles = 50;
   let temperature = 2;
   let hitCount = 0;
   let boxSize = 400;
   let boxMargin = 50;
+  let particleRadius = 5; // Half of the diameter (10)
   let slider;
 
   p.setup = () => {
@@ -14,8 +17,14 @@ function brownianSketch(p) {
     particles = [];
     for (let i = 0; i < numParticles; i++) {
       particles.push({
-        x: p.random(boxMargin, boxMargin + boxSize),
-        y: p.random(boxMargin, boxMargin + boxSize),
+        x: p.random(
+          boxMargin + particleRadius,
+          boxMargin + boxSize - particleRadius
+        ),
+        y: p.random(
+          boxMargin + particleRadius,
+          boxMargin + boxSize - particleRadius
+        ),
         vx: 0,
         vy: 0,
       });
@@ -24,12 +33,12 @@ function brownianSketch(p) {
     slider = p.createSlider(0.1, 5, 2, 0.1);
     slider.parent(p.canvas.parentElement);
     // Put slider below the canvas (no need for position left/right)
-    slider.style('width', '200px');
-    slider.style('display', 'block');
-    slider.style('margin', '20px auto 0 auto'); // Center it horizontally
-    slider.style('position', 'relative');       // Make sure it's relative, not absolute
-    slider.style('left', '0');                  // Reset left property
-    slider.style('right', '0');                 // Reset right property
+    slider.style("width", "200px");
+    slider.style("display", "block");
+    slider.style("margin", "20px auto 0 auto"); // Center it horizontally
+    slider.style("position", "relative"); // Make sure it's relative, not absolute
+    slider.style("left", "0"); // Reset left property
+    slider.style("right", "0"); // Reset right property
   };
 
   p.draw = () => {
@@ -52,24 +61,44 @@ function brownianSketch(p) {
       pt.y += pt.vy;
 
       let hit = false;
-      if (pt.x <= boxMargin) { pt.x = boxMargin; pt.vx *= -1; hit = true; }
-      if (pt.x >= boxMargin + boxSize) { pt.x = boxMargin + boxSize; pt.vx *= -1; hit = true; }
-      if (pt.y <= boxMargin) { pt.y = boxMargin; pt.vy *= -1; hit = true; }
-      if (pt.y >= boxMargin + boxSize) { pt.y = boxMargin + boxSize; pt.vy *= -1; hit = true; }
+      if (pt.x <= boxMargin + particleRadius) {
+        pt.x = boxMargin + particleRadius;
+        pt.vx *= -1;
+        hit = true;
+      }
+      if (pt.x >= boxMargin + boxSize - particleRadius) {
+        pt.x = boxMargin + boxSize - particleRadius;
+        pt.vx *= -1;
+        hit = true;
+      }
+      if (pt.y <= boxMargin + particleRadius) {
+        pt.y = boxMargin + particleRadius;
+        pt.vy *= -1;
+        hit = true;
+      }
+      if (pt.y >= boxMargin + boxSize - particleRadius) {
+        pt.y = boxMargin + boxSize - particleRadius;
+        pt.vy *= -1;
+        hit = true;
+      }
       if (hit) hitCount++;
 
       p.noStroke();
       p.fill(50, 50, 120, 200);
-      p.ellipse(pt.x, pt.y, 10, 10);
+      p.ellipse(pt.x, pt.y, particleRadius * 2, particleRadius * 2);
     }
 
     p.noStroke();
     p.fill(0);
     p.textSize(16);
-    p.text(`Temperature: ${temperature}`, 230, boxSize + boxMargin * 2 + 25);
+    p.text(
+      `${getTranslation(language, "temperature")}: ${temperature.toFixed(1)}`,
+      230,
+      boxSize + boxMargin * 2 + 25
+    );
     if (hitCount > 0 && p.frameCount % 30 === 0) {
-  hitCount = Math.floor(hitCount * 0.8); // Decay 20% per second at 30 fps
-}
+      hitCount = Math.floor(hitCount * 0.8); // Decay 20% per second at 30 fps
+    }
   };
 
   // Custom cleanup to remove slider
